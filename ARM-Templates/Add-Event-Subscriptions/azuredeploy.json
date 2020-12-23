@@ -11,7 +11,10 @@
         },
         "storageAccountName": {
             "defaultValue": "[concat(resourceGroup().name, 'storage2')]",
-            "type": "String"
+            "type": "String",
+            "metadata": {
+                "description": "The name of the storage with key to rotate."
+            }
         },
         "keyVaultRG": {
             "defaultValue": "[resourceGroup().name]",
@@ -22,7 +25,10 @@
         },
         "keyVaultName": {
             "defaultValue": "[concat(resourceGroup().name, '-kv')]",
-            "type": "String"
+            "type": "String",
+            "metadata": {
+                "description": "The name of the key vault where key is stored."
+            }
         },
         "functionAppName": {
             "defaultValue": "[concat(resourceGroup().name, '-storagekey-rotation-fnapp')]",
