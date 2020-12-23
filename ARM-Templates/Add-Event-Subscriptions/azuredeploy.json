@@ -80,10 +80,7 @@
             "apiVersion": "2019-10-01",
             "subscriptionId": "[subscription().subscriptionId]",
             "resourceGroup": "[parameters('keyVaultRG')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('functionAppName'))]",
-                "[concat(resourceId('Microsoft.Web/sites', parameters('functionAppName')),'/sourcecontrols/web')]"
-            ],
+            "dependsOn": [],
             "properties": {
                 "mode": "Incremental",
                 "template": {
