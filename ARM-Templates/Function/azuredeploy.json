@@ -161,7 +161,7 @@
             }
         },
         {
-            "name": "kv-event-subscription-and-access",
+            "name": "kv-event-subscription-and-grant-access",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2019-10-01",
             "subscriptionId": "[subscription().subscriptionId]",
