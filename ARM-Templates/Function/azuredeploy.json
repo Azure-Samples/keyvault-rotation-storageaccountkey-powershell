@@ -31,7 +31,7 @@
             }
         },
         "functionAppName": {
-            "defaultValue": "[concat(parameters('storageAccountName'), '-rotation-fnapp')]",
+            "defaultValue": "[concat(resourceGroup().name, '-storagekey-rotation-fnapp')]",
             "type": "String",
             "metadata": {
                 "description": "The name of the function app that you wish to create."
@@ -71,7 +71,7 @@
         {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2018-02-01",
-            "name": "[parameters('functionAppName')]",
+            "name": "[concat(resourceGroup().name, '-rotation-fnapp-plan')]",
             "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Y1",
