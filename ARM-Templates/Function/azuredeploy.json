@@ -10,7 +10,7 @@
             }
         },
         "storageAccountName": {
-            "defaultValue": "akvrotationstorage",
+            "defaultValue": "[concat(resourceGroup().name, 'storage')]",
             "type": "String",
             "metadata": {
                 "description": "The name of the existing storage account with access keys to rotate."
@@ -24,14 +24,14 @@
             }
         },
         "keyVaultName": {
-            "defaultValue": "akvrotation-kv",
+            "defaultValue": "[concat(resourceGroup().name, '-kv')]",
             "type": "String",
             "metadata": {
                 "description": "The name of the existing key vault where secrets are stored."
             }
         },
         "functionAppName": {
-            "defaultValue": "akvrotation-fnapp",
+            "defaultValue": "[concat(resourceGroup().name, 'storage-rotation-fnapp')]",
             "type": "String",
             "metadata": {
                 "description": "The name of the function app that you wish to create."
@@ -53,7 +53,7 @@
         }
     },
     "variables": {
-        "functionStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'azfunctions')]",
+        "functionStorageAccountName": "[concat(uniquestring(parameters('functionAppName')), 'fnappstrg')]",
         "eventSubscriptionName": "[concat(parameters('keyVaultName'),'-',parameters('secretName'),'-',parameters('functionAppName'))]"
     },
     "resources": [
@@ -141,7 +141,7 @@
                     ],
                     "properties": {
                         "RepoUrl": "[parameters('repoURL')]",
-                        "branch": "master",
+                        "branch": "main",
                         "IsManualIntegration": true
                     }
                 }
@@ -161,7 +161,7 @@
             }
         },
         {
-            "name": "kv-grant-access",
+            "name": "kv-event-subscription-and-access",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2019-10-01",
             "subscriptionId": "[subscription().subscriptionId]",
