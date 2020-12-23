@@ -1,0 +1,61 @@
+{  
+	"$schema":"https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion":"1.0.0.0",
+	"parameters":{  
+	   "ResourceNamePrefix":{  
+		  "defaultValue":"[resourceGroup().name]",
+		  "type":"string",
+		  "metadata":{  
+			 "description":"Prefix for resource names."
+		  }
+	   }
+	},
+	"variables":{  
+	   "storageaccountid":"[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', parameters('ResourceNamePrefix'),'strg')]"
+	},
+	"resources":[  
+	  
+	   {  
+		  "type":"Microsoft.KeyVault/vaults",
+		  "apiVersion":"2018-02-14",
+		  "name":"[concat(parameters('ResourceNamePrefix'),'-kv')]",
+		  "location":"[resourceGroup().location]",
+		  "dependsOn":[  
+  
+		  ],
+		  "properties":{  
+			 "sku":{  
+				"family":"A",
+				"name":"Standard"
+			 },
+			 "tenantId":"[subscription().tenantId]",
+			 "accessPolicies":[],
+			 "enabledForDeployment":false,
+			 "enabledForDiskEncryption":false,
+			 "enabledForTemplateDeployment":false
+		  }
+	   },
+	   {
+		"type": "Microsoft.Storage/storageAccounts",
+		"apiVersion": "2019-06-01",
+		"name": "[concat(parameters('ResourceNamePrefix'),'storage')]",
+		"location": "[resourceGroup().location]",
+		"sku": {
+			"name": "Standard_LRS",
+			"tier": "Standard"
+		},
+		"kind": "Storage"
+	  },
+	  {
+		"type": "Microsoft.Storage/storageAccounts",
+		"apiVersion": "2019-06-01",
+		"name": "[concat(parameters('ResourceNamePrefix'),'storage2')]",
+		"location": "[resourceGroup().location]",
+		"sku": {
+			"name": "Standard_LRS",
+			"tier": "Standard"
+		},
+		"kind": "Storage"
+	  }
+	]
+  }
