@@ -41,7 +41,6 @@
        
     },
     "variables": {
-		"functionStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'azfunctions')]",
 		"eventSubscriptionName": "[concat(parameters('keyVaultName'),'-',parameters('secretName'),'-',parameters('functionAppName'))]"
 		
     },
@@ -62,7 +61,7 @@
                         {
                             "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
                             "apiVersion": "2018-09-01-preview",
-                            "name": "[concat(parameters('storageAccountName'), '/Microsoft.Authorization/', guid(uniqueString(parameters('storageAccountName'))))]",
+                            "name": "[concat(parameters('storageAccountName'), '/Microsoft.Authorization/', guid(reference(resourceId('Microsoft.Web/sites', parameters('functionAppName')),'2019-08-01', 'Full').identity.principalId))]",
                             "dependsOn": [
                             
                             ],
