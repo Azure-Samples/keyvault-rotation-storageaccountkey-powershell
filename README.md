@@ -19,10 +19,10 @@ This project framework provides the following features:
 ### Installation
 
 There are 3 ARM templates available
-- [Initial Setup (Demo)](https://github.com/Azure-Samples/KeyVault-Rotation-StorageAccountKey-PowerShell/tree/master/arm-templates#inital-setup)- Creates Key Vault and Storage Account if needed. Existing Key Vault and Storage Account can be used instead
-- [Rotation Azure Function - Setup](https://github.com/Azure-Samples/KeyVault-Rotation-StorageAccountKey-PowerShell/tree/master/arm-templates#storage-account-key-rotation-functions) - It creates and deploys function app and function code, creates necessary permissions, and Key 
+- [Initial Setup (Demo)](https://github.com/Azure-Samples/KeyVault-Rotation-StorageAccountKey-PowerShell/tree/master/ARM-Templates#inital-setup)- Creates Key Vault and Storage Account if needed. Existing Key Vault and Storage Account can be used instead
+- [Rotation Azure Function - Setup](https://github.com/Azure-Samples/KeyVault-Rotation-StorageAccountKey-PowerShell/tree/master/ARM-Templates#storage-account-key-rotation-functions) - It creates and deploys function app and function code, creates necessary permissions, and Key 
 Vault event subscription for Near Expiry Event for individual secret (secret name can be provided as parameter)
-- [Add storage accounts for management to existing Azure Function](https://github.com/Azure-Samples/KeyVault-Rotation-StorageAccountKey-PowerShell/tree/master/arm-templates#add-event-subscription-to-existing-functions) - single function can be used for multiple storage accounts. This template adding new event subscription for secret and necessary permissions to access storage account
+- [Add storage accounts for management to existing Azure Function](https://github.com/Azure-Samples/KeyVault-Rotation-StorageAccountKey-PowerShell/tree/master/ARM-Templates#add-event-subscription-to-existing-functions) - single function can be used for multiple storage accounts. This template adding new event subscription for secret and necessary permissions to access storage account
 
 ## Demo
 
