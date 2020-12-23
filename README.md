@@ -8,7 +8,7 @@ This project framework provides the following features:
 
 * Rotation function for storage account key triggered by Event Grid (AKVStorageRotation)
 
-* Rotation function for storage account key triggered by HTTP call(AKVStorageRotationHttp)
+* Rotation function for storage account key triggered by HTTP call (AKVStorageRotationHttp)
 
 * ARM template for function deployment
 
