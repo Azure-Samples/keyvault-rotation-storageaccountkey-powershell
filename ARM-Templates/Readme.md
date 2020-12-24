@@ -18,9 +18,8 @@ This template creates below components to help demonstrate Azure Storage Account
 ### Storage Account Key Rotation Functions:
 
 - App Service Plan
-- Storage Account
 - Function App with access to Key Vault and Azure Storage
-- Deploy functions to rotate storage account key
+- Functions to rotate storage account key
 - Event Subscription
 
 
