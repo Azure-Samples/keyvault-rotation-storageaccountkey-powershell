@@ -89,7 +89,7 @@
                 "name": "[variables('appServiceSKU')]"
             },
             "properties": {
-                "name": "[parameters('functionAppName')]"
+                "name": "[concat(resourceGroup().name, '-rotation-fnapp-plan')]"
                
             }
         },
