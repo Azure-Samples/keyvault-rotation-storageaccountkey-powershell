@@ -65,7 +65,7 @@
     },
     "variables": {
         "functionStorageAccountName": "[concat(uniquestring(parameters('functionAppName')), 'fnappstrg')]",
-        "eventSubscriptionName": "[concat(parameters('keyVaultName'),'-',parameters('secretName'),'-',parameters('functionAppName'))]",
+        "eventSubscriptionName": "[concat(parameters('functionAppName'),'-',parameters('secretName'))]",
         "appServiceSKU":"[if(equals(parameters('appServicePlanType'),'Consumption Plan'),'Y1','P1V2')]"
     },
     "resources": [
