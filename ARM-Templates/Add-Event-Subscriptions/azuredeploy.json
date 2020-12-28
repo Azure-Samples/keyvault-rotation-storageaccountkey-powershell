@@ -47,7 +47,7 @@
        
     },
     "variables": {
-		"eventSubscriptionName": "[concat(parameters('keyVaultName'),'-',parameters('secretName'),'-',parameters('functionAppName'))]"
+		"eventSubscriptionName": "[concat(parameters('functionAppName'),'-',parameters('secretName'))]"
 		
     },
     "resources": [
