@@ -87,11 +87,7 @@
             },
             "kind": "Storage",
             "properties":{
-                "supportsHttpsTrafficOnly": true,
-                "networkAcls":{
-                    "bypass": "AzureServices",
-                    "defaultAction": "Deny"
-                }
+                "supportsHttpsTrafficOnly": true                
             }
         },
         {
