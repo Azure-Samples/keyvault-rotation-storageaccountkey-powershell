@@ -46,8 +46,7 @@
 			"tier": "Standard"			
 		},		
 		"kind": "Storage",
-		"properties": {
-			"accessTier": "Hot",
+		"properties": {			
 			"allowBlobPublicAccess": false,
 			"supportsHttpsTrafficOnly": true,
 			"networkAcls": {
@@ -66,8 +65,7 @@
 			"tier": "Standard"
 		},
 		"kind": "Storage",
-		"properties": {
-			"accessTier": "Hot",
+		"properties": {			
 			"allowBlobPublicAccess": false,
 			"supportsHttpsTrafficOnly": true,
 			"networkAcls": {
