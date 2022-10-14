@@ -151,7 +151,8 @@
                             "value": "[reference(resourceId('microsoft.insights/components', parameters('functionAppName')), '2018-05-01-preview').InstrumentationKey]"
                         }
                     ],
-                    "minTlsVersion": "1.2"
+                    "minTlsVersion": "1.2",
+                    "ftpsState": "Disabled"
                 }
                 
                 
@@ -182,8 +183,9 @@
                 "[concat('hidden-link:', resourceId('Microsoft.Web/sites', parameters('functionAppName')))]": "Resource"
             },
             "properties": {
+                "Application_Type": "web",
                 "ApplicationId": "[parameters('functionAppName')]",
-                "Request_Source": "IbizaWebAppExtensionCreate",          
+                "Request_Source": "rest",          
                 "WorkspaceResourceId": "[parameters('workspaceResourceId')]"
 
             }
