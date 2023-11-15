@@ -29,7 +29,14 @@
             "metadata": {
                 "description": "The name of the existing key vault where secrets are stored."
             }
-        },
+        },        
+        "workspaceResourceId": {
+            "type": "string",
+            "metadata": {
+                "description": "workspaceResourceId used by App Insigths."
+            }
+        }
+        ,     
         "appServicePlanType": {
 			"type": "string",
 			"allowedValues": [
@@ -66,7 +73,7 @@
     "variables": {
         "functionStorageAccountName": "[concat(uniquestring(parameters('functionAppName')), 'fnappstrg')]",
         "eventSubscriptionName": "[concat(parameters('functionAppName'),'-',parameters('secretName'))]",
-        "appServiceSKU":"[if(equals(parameters('appServicePlanType'),'Consumption Plan'),'Y1','P1V2')]"
+        "appServiceSKU":"[if(equals(parameters('appServicePlanType'),'Consumption Plan'),'Y1','P1V3')]"
     },
     "resources": [
         {
@@ -78,7 +85,10 @@
                 "name": "Standard_LRS",
                 "tier": "Standard"
             },
-            "kind": "Storage"
+            "kind": "Storage",
+            "properties":{
+                "supportsHttpsTrafficOnly": true                
+            }
         },
         {
             "type": "Microsoft.Web/serverfarms",
@@ -109,6 +119,7 @@
             "properties": {
                 "enabled": true,
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',concat(resourceGroup().name, '-rotation-fnapp-plan'))]",
+                "httpsOnly": true,
                 "siteConfig": {
                     "appSettings": [
                         {
@@ -117,7 +128,7 @@
                         },
                         {
                             "name": "FUNCTIONS_EXTENSION_VERSION",
-                            "value": "~3"
+                            "value": "~4"
                         },
                         {
                             "name": "FUNCTIONS_WORKER_RUNTIME",
@@ -139,8 +150,12 @@
                             "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
                             "value": "[reference(resourceId('microsoft.insights/components', parameters('functionAppName')), '2018-05-01-preview').InstrumentationKey]"
                         }
-                    ]
+                    ],
+                    "minTlsVersion": "1.2",
+                    "ftpsState": "Disabled"
                 }
+                
+                
             },
             "resources": [
                 {
@@ -155,20 +170,24 @@
                         "branch": "main",
                         "IsManualIntegration": true
                     }
+                    
                 }
             ]
         },
         {
             "type": "microsoft.insights/components",
-            "apiVersion": "2018-05-01-preview",
+            "apiVersion": "2020-02-02-preview",
             "name": "[parameters('functionAppName')]",
             "location": "[resourceGroup().location]",
             "tags": {
                 "[concat('hidden-link:', resourceId('Microsoft.Web/sites', parameters('functionAppName')))]": "Resource"
             },
             "properties": {
+                "Application_Type": "web",
                 "ApplicationId": "[parameters('functionAppName')]",
-                "Request_Source": "IbizaWebAppExtensionCreate"
+                "Request_Source": "rest",          
+                "WorkspaceResourceId": "[parameters('workspaceResourceId')]"
+
             }
         },
         {
